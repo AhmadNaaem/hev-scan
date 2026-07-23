@@ -1,6 +1,6 @@
 # HEV-Scan — Host Enumeration & Vulnerability Scanner
 
-HEV-Scan is a single-file CLI recon-to-risk pipeline: it resolves a host,
+HEV-Scan is a modular CLI recon-to-risk pipeline: it resolves a host,
 scans its services with `nmap`, matches detected software against known
 CVEs via the NVD API, and renders the results as a self-contained HTML
 report. Built for a defensive/educational security course — run it against
