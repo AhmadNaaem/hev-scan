@@ -30,23 +30,17 @@ ORANGE = "#ff6b00"
 NVD_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 
 LOGO_ART = r"""
-                    #####
-             #######    ###########
-        ####         ####  ############
-      ##                 ##  #######V#####
-    ##        __           ## #############
-   #         /  \            ############
-  ##        /    \          ##########
- ##         /     \           #####
- ##        /       \          ####
- ##        /        \         ##
- ##       /          \        ##
-  ##      /          \       ##
-   #     /            \      #
-    ##                     ##
-      ##                 ##
-        ####         ####
-             #######
+       ################
+    #####    ############
+   ##    ##      ########
+ ###      ##       #####
+ ##       ###      ####
+ ##      #####      ###
+ ##    ###  ###    ###
+ ###  ###    ####  ##
+   ###           ###
+     #####  ######
+        ######
 """.strip("\n")
 
 SEVERITY_STYLES = {
@@ -73,10 +67,15 @@ console = Console()
 # --------------------------------------------------------------------------
 
 def print_banner():
-    major_digit = VERSION.split(".")[0][:1] or "?"
-    art = LOGO_ART.replace("V", major_digit)
-    for line in art.splitlines():
+    art_lines = LOGO_ART.splitlines()
+    for line in art_lines:
         console.print(line, style=f"bold {ORANGE}", markup=False, highlight=False)
+
+    art_width = max(len(line) for line in art_lines)
+    version_text = f"v{VERSION}"
+    padding = max(0, (art_width - len(version_text)) // 2)
+    console.print(" " * padding + version_text, style=f"bold {ORANGE}", markup=False, highlight=False)
+    console.print()
 
     try:
         wordmark = pyfiglet.figlet_format("HEV-Scan", font="slant")
