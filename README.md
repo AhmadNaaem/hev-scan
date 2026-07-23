@@ -95,17 +95,3 @@ python3 hev_scan.py testvm.local -p 1000 -o testvm_report.html
 # Port/service scan only, no NVD lookups
 python3 hev_scan.py 192.168.56.10 --no-cve
 ```
-
-## Limitation: CVE matching is fuzzy
-
-CVE matching uses NVD's `keywordSearch` endpoint against `"<product>
-<version>"`, not exact CPE (Common Platform Enumeration) matching. This is
-a deliberate trade-off for simplicity: it catches obviously outdated,
-well-known-vulnerable software effectively, but it can also miss real
-matches (if NVD's wording differs from nmap's service banner) or over-match
-(pulling in CVEs for a similarly-named but unrelated product). Treat the
-report as a list of leads to verify manually, not as ground truth.
-
-## License
-
-MIT — see [LICENSE](LICENSE).
